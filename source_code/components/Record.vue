@@ -3,7 +3,7 @@
     <section class="min-h-screen w-full bg-[#718f67] overflow-hidden">
       <VueSlickCarousel @beforeChange="handleSwipe" ref="carousel">
         <div v-for="item in musicArr" :key="item.id" class="flex justify-center mt-20">
-          <img @click="playNotification(item.sound)" src="@/static/images/record.png" :alt="item.title" class="h-64 w-64 md:h-80 md:w-80 duration-300 mx-auto cursor-pointer" :class="{'animate-spin': isSpin}">
+          <img @click="playNotification()" src="@/static/images/record.png" :alt="item.title" class="h-64 w-64 md:h-80 md:w-80 duration-300 mx-auto cursor-pointer" :class="{'animate-spin': isSpin}">
           <h2 class="text-center text-white text-2xl font-bold mt-10">{{ item.title }}</h2>
         </div>
       </VueSlickCarousel>
@@ -11,8 +11,8 @@
         <input @change="changeDuration" v-model="currentTime" :style="runTime" min="0" :max="duration" step="1" type="range" class="timeBar w-[80%] md:w-[30%]">
         <div class="flex align-center justify-center mt-4">
           <fa @click="changeMusic(false)" icon="fa-solid fa-backward-fast" class="text-white cursor-pointer text-2xl" />
-          <fa v-if="!isPlay" @click="playNotification(musicArr[currentItem].sound)" icon="fa-solid fa-play" class="text-white text-2xl cursor-pointer mx-10" />
-          <fa v-else @click="playNotification(musicArr[currentItem].sound)" icon="fa-solid fa-pause" class="text-white text-2xl cursor-pointer mx-10" />
+          <fa v-if="!isPlay" @click="playNotification()" icon="fa-solid fa-play" class="text-white text-2xl cursor-pointer mx-10" />
+          <fa v-else @click="playNotification()" icon="fa-solid fa-pause" class="text-white text-2xl cursor-pointer mx-10" />
           <fa @click="changeMusic(true)" icon="fa-solid fa-forward-fast" class="text-white text-2xl cursor-pointer" />
         </div>
         <div class="w-full flex justify-center mt-6 gap-2">
@@ -46,14 +46,19 @@ export default {
         {id: 2, title: '告五人十首精選歌曲', sound: require('@/static/music/告五人Accusefive.mp3').default},
         {id: 3, title: '周杰倫15首精選', sound: require('@/static/music/jaychou.mp3').default}
       ],
-      playTitle: '',
       isPlay: false,
       audio: null,
       duration: 100,
       currentTime: 0,
       isSpin: false,
+      audioVolume: 1,
       gainNode: 0.5,
       currentItem: 0
+    }
+  },
+  watch: {
+    gainNode: function() {
+      this.audioVolume = this.gainNode
     }
   },
   computed: {
@@ -67,42 +72,27 @@ export default {
   },
   methods: {
     handleSwipe(oldSlideIndex, newSlideIndex) {
-      this.isPlay = false
-      this.isSpin = false
-      this.currentTime = 0
       if (this.audio) {
         this.audio.pause()
+        this.audio = null
       }
-      this.audio = null
-      this.currentItem = newSlideIndex
-      this.playTitle = this.musicArr[newSlideIndex].title
-    },
-    changeVolume() {
-      if (this.audio) this.audio.volume = this.gainNode
-    },
-    changeDuration() {
-      if (this.audio) this.audio.currentTime = this.currentTime
-    },
-    playNotification(sound) {
-      this.isSpin = !this.isSpin
       if (this.isPlay) {
         this.isPlay = false
-        this.audio.pause()
-      } else {
-        if (this.audio) {
-          this.isPlay = true
-          this.audio.play()
-        } else {
-          this.isPlay = true
-          this.audio = new Audio(sound)
-          this.audio.volume = 0.5
-          this.gainNode = this.audio.volume
-          
-          this.audio.play()
-          setTimeout(() => {
-            this.duration = parseInt(this.audio.duration)
-          }, 200)
+        this.isSpin = false
+        this.audio = new Audio(this.musicArr[newSlideIndex].sound)
+        this.currentTime = 0
+        this.currentItem = newSlideIndex
+        this.audioVolume = this.audio.volume
+        this.audioVolume = this.gainNode
 
+        setTimeout(() => {
+          this.isPlay = true
+          this.isSpin = true
+        }, 500)
+
+        setTimeout(() => {
+          this.duration = parseInt(this.audio.duration)
+          this.audio.play()
           const playerTimer = setInterval(() => {
             if (this.audio) {
               this.currentTime = parseInt(this.audio.currentTime)
@@ -115,7 +105,42 @@ export default {
               clearInterval(playerTimer)
             }
           }, 1000)
-        }
+        }, 1000)
+      } else {
+        this.audio = new Audio(this.musicArr[newSlideIndex].sound)
+        this.currentTime = 0
+        this.currentItem = newSlideIndex
+      }
+    },
+    changeVolume() {
+      if (this.audio) this.audio.volume = this.gainNode
+    },
+    changeDuration() {
+      if (this.audio) this.audio.currentTime = this.currentTime
+    },
+    playNotification() {
+      this.isSpin = !this.isSpin
+      if (this.isPlay) {
+        this.isPlay = false
+        this.audio.pause()
+      } else {
+        this.audioVolume = this.audio.volume
+        this.audioVolume = this.gainNode
+        this.duration = parseInt(this.audio.duration)
+        this.isPlay = true
+        this.audio.play()
+
+        const playerTimer = setInterval(() => {
+          if (this.audio) {
+            this.currentTime = parseInt(this.audio.currentTime)
+          } else {
+            clearInterval(playerTimer)
+          }
+          if (this.currentTime === this.duration) {
+            this.changeMusic(true)
+            clearInterval(playerTimer)
+          }
+        }, 1000)
       }
     },
     changeMusic(bool) {
@@ -127,7 +152,7 @@ export default {
     }
   },
   mounted() {
-    this.playTitle = this.musicArr[0].title
+    this.audio = new Audio(this.musicArr[0].sound)
   }
 }
 </script>
