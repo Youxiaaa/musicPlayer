@@ -16,10 +16,10 @@
           <fa @click="changeMusic(true)" icon="fa-solid fa-forward-fast" class="text-white text-2xl cursor-pointer" />
         </div>
         <div class="w-full flex justify-center mt-6 gap-2">
-          <button v-if="gainNode != 0" @click="gainNode = 0, changeVolume()">
+          <button v-if="gainNode != 0" @click="cacheGainNode = gainNode, gainNode = 0, changeVolume()">
             <fa icon="fa-solid fa-volume-high" class="text-white text-2xl" />
           </button>
-          <button v-else @click="gainNode = 0.5, changeVolume()">
+          <button v-else @click="gainNode = cacheGainNode, changeVolume()">
             <fa icon="fa-solid fa-volume-xmark" class="text-white text-2xl" />
           </button>
           <input @change="changeVolume" v-model="gainNode" min="0" max="1" step="0.01" type="range" :style="volumeVal" class="changeVolume mt-7">
@@ -53,6 +53,7 @@ export default {
       isSpin: false,
       audioVolume: 1,
       gainNode: 0.5,
+      cacheGainNode: 0,
       currentItem: 0
     }
   },
