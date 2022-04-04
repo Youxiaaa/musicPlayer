@@ -44,7 +44,7 @@ export default {
       musicArr: [
         {id: 1, title: 'Emberz - Embers', sound: require('@/static/music/embers.mp3').default},
         {id: 2, title: '告五人十首精選歌曲', sound: require('@/static/music/告五人Accusefive.mp3').default},
-        {id: 3, title: '周杰倫15首精選', sound: require('@/static/music/jaychou.mp3').default},
+        {id: 3, title: '周杰倫15首精選', sound: require('@/static/music/jaychou.mp3').default}
       ],
       playTitle: '',
       isPlay: false,
