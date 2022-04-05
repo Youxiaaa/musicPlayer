@@ -1,9 +1,0 @@
-{
-  "name": "nuxt-music",
-  "short_name": "nuxt-music",
-  "icons": [],
-  "start_url": "/musicPlayer/?standalone=true",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "lang": "en"
-}
