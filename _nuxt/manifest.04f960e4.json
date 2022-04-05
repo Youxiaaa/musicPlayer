@@ -1,0 +1,11 @@
+{
+  "name": "MusicPlayer",
+  "short_name": "MusicPlayer",
+  "description": "一個前端的音樂播放器",
+  "icons": [],
+  "start_url": "/musicPlayer/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#718f67",
+  "lang": "zh-TW"
+}

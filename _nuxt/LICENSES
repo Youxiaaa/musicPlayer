@@ -1,13 +1,11 @@
 /*!
-  * vue-router v3.5.3
-  * (c) 2021 Evan You
-  * @license MIT
-  */
-
-/*!
- * Vue.js v2.6.14
- * (c) 2014-2021 Evan You
- * Released under the MIT License.
+ * vue-range-slider v0.6.0
+ * https://github.com/ktsn/vue-range-slider
+ *
+ * @license
+ * Copyright (c) 2016-2018 katashin
+ * Released under the MIT license
+ * https://github.com/ktsn/vue-range-slider/blob/master/LICENSE
  */
 
 
@@ -31,11 +29,13 @@
 
 
 /*!
- * vue-range-slider v0.6.0
- * https://github.com/ktsn/vue-range-slider
- *
- * @license
- * Copyright (c) 2016-2018 katashin
- * Released under the MIT license
- * https://github.com/ktsn/vue-range-slider/blob/master/LICENSE
+  * vue-router v3.5.3
+  * (c) 2021 Evan You
+  * @license MIT
+  */
+
+/*!
+ * Vue.js v2.6.14
+ * (c) 2014-2021 Evan You
+ * Released under the MIT License.
  */
