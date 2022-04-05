@@ -1,0 +1,11 @@
+{
+  "name": "MusicPlayer",
+  "short_name": "PWA MusicPlayer",
+  "description": "一個菜雞前端做的PWA音樂播放器",
+  "icons": [],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#718f67",
+  "theme_color": "#718f67",
+  "lang": "zh-TW"
+}
