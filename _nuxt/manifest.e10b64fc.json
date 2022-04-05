@@ -1,7 +1,6 @@
 {
-  "name": "Youxiaaa-MusicPlayer",
-  "short_name": "Music-Player",
-  "description": "一個菜雞前端開發的音樂播放器",
+  "name": "nuxt-music",
+  "short_name": "nuxt-music",
   "icons": [
     {
       "src": "/musicPlayer/_nuxt/icons/icon_64x64.6baea2.png",
@@ -50,5 +49,5 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#718f67",
-  "lang": "zh-TW"
+  "lang": "en"
 }
