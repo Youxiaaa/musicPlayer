@@ -51,9 +51,5 @@
   "background_color": "#718f67",
   "theme_color": "#718f67",
   "lang": "zh-TW",
-  "scope": "/",
-  "icon": {
-    "source": "/icon.png",
-    "fileName": "icon.png"
-  }
+  "scope": "/"
 }
