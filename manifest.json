@@ -1,5 +1,5 @@
 {
-  "name": "MusicPlayer",
+  "name": "PWA MusicPlayer",
   "short_name": "PWA MusicPlayer",
   "description": "一個菜雞前端做的PWA音樂播放器",
   "background_color": "#718f67",
