@@ -1,4 +1,4 @@
-const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"nuxt-music-prod","directoryIndex":"/","revision":"o65SP3w7rbIy"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"o65SP3w7rbIy","url":"index.html"}],"runtimeCaching":[{"urlPattern":"/musicPlayer/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/musicPlayer/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/musicPlayer/","offlineStrategy":"NetworkFirst"}
+const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":["@/static/sw.js"],"config":{"debug":false},"cacheOptions":{"cacheId":"nuxt-music-prod","directoryIndex":"/","revision":"gsCvqdZKjBhc"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"gsCvqdZKjBhc","url":"/musicPlayer/?standalone=true"}],"runtimeCaching":[{"urlPattern":"/musicPlayer/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/musicPlayer/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/musicPlayer/","offlineStrategy":"NetworkFirst"}
 
 importScripts(...[options.workboxURL, ...options.importScripts])
 
@@ -106,7 +106,15 @@ function workboxExtensions(workbox, options) {
 }
 
 function cachingExtensions(workbox, options) {
-  
+  workbox.routing.registerRoute(
+  /\.(mp4|webm)/,
+  new workbox.strategies.CacheFirst({
+    plugins: [
+      new workbox.rangeRequests.RangeRequestsPlugin(),
+    ],
+  }),
+  'GET'
+);
 }
 
 function routingExtensions(workbox, options) {
