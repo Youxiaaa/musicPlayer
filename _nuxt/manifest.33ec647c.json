@@ -46,9 +46,10 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
+  "start_url": "index.html",
+  "display": "fullscreen",
   "background_color": "#718f67",
   "theme_color": "#718f67",
-  "lang": "zh-TW"
+  "lang": "zh-TW",
+  "scope": "/"
 }
