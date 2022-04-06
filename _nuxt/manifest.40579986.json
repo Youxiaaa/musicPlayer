@@ -46,7 +46,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
+  "start_url": "/musicPlayer/",
   "display": "fullscreen",
   "background_color": "#718f67",
   "theme_color": "#718f67",
