@@ -7,5 +7,9 @@
   "display": "fullscreen",
   "lang": "zh-TW",
   "scope": "/",
-  "start_url": "index.html"
+  "start_url": "/",
+  "icon": {
+    "source": "/icon.png",
+    "fileName": "icon.png"
+  }
 }
