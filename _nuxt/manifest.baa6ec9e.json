@@ -1,7 +1,6 @@
 {
-  "name": "PWA MusicPlayer",
-  "short_name": "PWA MusicPlayer",
-  "description": "一個菜雞前端做的PWA音樂播放器",
+  "name": "nuxt-music",
+  "short_name": "nuxt-music",
   "icons": [
     {
       "src": "/musicPlayer/_nuxt/icons/icon_64x64.6baea2.png",
@@ -46,10 +45,8 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
-  "display": "fullscreen",
-  "background_color": "#718f67",
-  "theme_color": "#718f67",
-  "lang": "zh-TW",
-  "scope": "/"
+  "start_url": "/musicPlayer/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en"
 }
