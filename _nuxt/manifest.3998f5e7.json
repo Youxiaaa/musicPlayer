@@ -47,7 +47,7 @@
     }
   ],
   "start_url": "/musicPlayer/",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#718f67",
   "theme_color": "#718f67",
   "lang": "zh-TW"
